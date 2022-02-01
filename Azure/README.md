@@ -15,7 +15,7 @@ docker run --rm -it -v $(pwd):/root -w /root ubuntu:latest /bin/bash
 From the Docker container terminal, install some packages
 
 ```shell
-apt-get update && apt-get install -y vim curl sudo 
+apt-get update && apt-get install -y vim curl ssh-client sudo 
 ```
 
 Install Azure cli (see [https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt))
@@ -33,7 +33,7 @@ az login
 Install Terraform cli (see [https://learn.hashicorp.com/tutorials/terraform/install-cli](https://learn.hashicorp.com/tutorials/terraform/install-cli)
 
 ```shell
-sudo apt-get update && sudo apt-get install -y gnupg software-properties-common curl
+sudo apt-get update && sudo apt-get install -y gnupg software-properties-common
 curl -fsSL https://apt.releases.hashicorp.com/gpg | sudo apt-key add -
 sudo apt-add-repository "deb [arch=amd64] https://apt.releases.hashicorp.com $(lsb_release -cs) main"
 sudo apt-get update && sudo apt-get install terraform
