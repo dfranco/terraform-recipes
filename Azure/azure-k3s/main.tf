@@ -56,8 +56,6 @@ resource "azurerm_network_interface" "main" {
 resource "azurerm_network_interface" "internal" {
   name                = "${var.prefix}-nic2"
   resource_group_name = azurerm_resource_group.main.name
-
-
   location = azurerm_resource_group.main.location
 
   ip_configuration {
@@ -103,7 +101,7 @@ resource "azurerm_linux_virtual_machine" "main" {
   ]
 
   admin_ssh_key {
-    username   = "adminuser"
+    username = "adminuser"
     public_key = file("~/.ssh/id_rsa.pub")
   }
 
