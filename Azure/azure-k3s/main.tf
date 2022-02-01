@@ -56,7 +56,9 @@ resource "azurerm_network_interface" "main" {
 resource "azurerm_network_interface" "internal" {
   name                = "${var.prefix}-nic2"
   resource_group_name = azurerm_resource_group.main.name
-  location            = azurerm_resource_group.main.location
+
+
+  location = azurerm_resource_group.main.location
 
   ip_configuration {
     name                          = "internal"
@@ -88,11 +90,12 @@ resource "azurerm_network_interface_security_group_association" "main" {
 }
 
 resource "azurerm_linux_virtual_machine" "main" {
-  name                = "${var.prefix}-vm"
-  resource_group_name = azurerm_resource_group.main.name
-  location            = azurerm_resource_group.main.location
-  size                = "Standard_F2"
-  admin_username      = "adminuser"
+  name                            = "${var.prefix}-vm"
+  resource_group_name             = azurerm_resource_group.main.name
+  location                        = azurerm_resource_group.main.location
+  size                            = "Standard_F2"
+  admin_username                  = "adminuser"
+  disable_password_authentication = true
 
   network_interface_ids = [
     azurerm_network_interface.main.id,
@@ -115,6 +118,7 @@ resource "azurerm_linux_virtual_machine" "main" {
     storage_account_type = "Standard_LRS"
     caching              = "ReadWrite"
   }
+
   provisioner "remote-exec" {
     inline = [
       "echo 'hello'",
