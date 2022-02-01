@@ -15,7 +15,7 @@ docker run --rm -it -v $(pwd):/root -w /root ubuntu:latest /bin/bash
 From the Docker container terminal, install some packages
 
 ```shell
-apt-get update && apt-get install -y vim curl ssh-client sudo 
+apt-get update && apt-get install -y vim curl ssh-client sudo
 ```
 
 Install Azure cli (see [https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt))

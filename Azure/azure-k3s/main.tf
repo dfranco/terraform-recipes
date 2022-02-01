@@ -115,8 +115,20 @@ resource "azurerm_linux_virtual_machine" "main" {
     storage_account_type = "Standard_LRS"
     caching              = "ReadWrite"
   }
-}
+  provisioner "remote-exec" {
+    inline = [
+      "echo 'hello'",
+      "ls -l",
+      "curl -sfL https://get.k3s.io | sh -"
 
-output "azurerm_linux_virtual_machine" {
-  value = azurerm_linux_virtual_machine.main.public_ip_address
+    ]
+
+    connection {
+      type        = "ssh"
+      user        = "adminuser"
+      password    = ""
+      private_key = file("~/.ssh/id_rsa")
+      host        = self.public_ip_address
+    }
+  }
 }
